@@ -14,7 +14,8 @@
     "hardhat-gas-reporter": "^1.0.7",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^4.1.1",
-    "solidity-coverage": "^0.7.18"
+    "solidity-coverage": "^0.7.18",
+    "web3": "^4.6.0"
   },
   "scripts": {
     "test": "hardhat test",
@@ -30,6 +31,7 @@
     "hardhat-deploy": "^0.11.45",
     "hardhat-deploy-ethers": "^0.4.1",
     "node-fetch": "2.6.1",
+    "prettier": "^3.2.5",
     "waffle": "^0.0.4"
   }
 }
