@@ -1,12 +1,13 @@
 import { usdtAbi, usdtAddress } from "./helper.js"
 import { ethers } from "./ethers.js"
 
-const web3 = new Web3(window.ethereum)
+
 
 //button varibales
 const connectButton = document.getElementById("connectButton")
 const address = document.getElementById("address")
 const transfer = document.getElementById("transfer")
+
 
 if (typeof window.ethereum == "undefined") {
     console.log("Trust Wallet is not installed.")
