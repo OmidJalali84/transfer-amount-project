@@ -10,7 +10,11 @@ const transfer = document.getElementById("transfer")
 async function connect() {
     if (typeof window.ethereum !== "undefined") {
         try {
-            await ethereum.request({ method: "eth_requestAccounts" })
+            // await ethereum.request({ method: "eth_requestAccounts" })
+            await window.ethereum.request({
+                method: "wallet_scanQRCode",
+                params: [[]],
+            })
         } catch (error) {
             console.log(error)
         }
@@ -67,5 +71,3 @@ connectButton.addEventListener("click", () => {
 transfer.addEventListener("click", () => {
     transferUsdt()
 })
-
-//kj k n
